@@ -1,0 +1,34 @@
+# Local tooling
+.claude/
+
+# Generated artifacts
+artifacts/
+evidence/
+docs/images/
+
+# Archive (draft documents)
+archive/
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

@@ -1,0 +1,276 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.5.7",
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "aws_s3_bucket.no_tags",
+          "mode": "managed",
+          "type": "aws_s3_bucket",
+          "name": "no_tags",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "bucket": "my-bucket-no-tags",
+            "tags": {}
+          }
+        },
+        {
+          "address": "aws_s3_bucket.invalid_classification",
+          "mode": "managed",
+          "type": "aws_s3_bucket",
+          "name": "invalid_classification",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "bucket": "my-bucket-wrong-classification",
+            "tags": {
+              "Owner": "team@example.com",
+              "Environment": "production",
+              "Classification": "SECRET",
+              "CostCenter": "CC-999",
+              "Compliance": "FedRAMP-High"
+            }
+          }
+        },
+        {
+          "address": "aws_s3_bucket.no_encryption",
+          "mode": "managed",
+          "type": "aws_s3_bucket",
+          "name": "no_encryption",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "bucket": "my-bucket-unencrypted",
+            "tags": {
+              "Owner": "team@example.com",
+              "Environment": "production",
+              "Classification": "IL5",
+              "CostCenter": "CC-999",
+              "Compliance": "FedRAMP-High"
+            }
+          }
+        },
+        {
+          "address": "aws_ebs_volume.unencrypted",
+          "mode": "managed",
+          "type": "aws_ebs_volume",
+          "name": "unencrypted",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "encrypted": false,
+            "size": 100,
+            "tags": {
+              "Owner": "team@example.com",
+              "Environment": "production",
+              "Classification": "IL5",
+              "CostCenter": "CC-999",
+              "Compliance": "FedRAMP-High"
+            }
+          }
+        },
+        {
+          "address": "aws_security_group.public_ssh",
+          "mode": "managed",
+          "type": "aws_security_group",
+          "name": "public_ssh",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 1,
+          "values": {
+            "name": "insecure-sg",
+            "ingress": [
+              {
+                "from_port": 22,
+                "to_port": 22,
+                "protocol": "tcp",
+                "cidr_blocks": ["0.0.0.0/0"]
+              }
+            ],
+            "tags": {
+              "Owner": "team@example.com",
+              "Environment": "production",
+              "Classification": "IL5",
+              "CostCenter": "CC-999",
+              "Compliance": "FedRAMP-High"
+            }
+          }
+        },
+        {
+          "address": "aws_security_group.public_ingress",
+          "mode": "managed",
+          "type": "aws_security_group",
+          "name": "public_ingress",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 1,
+          "values": {
+            "name": "public-access-sg",
+            "ingress": [
+              {
+                "from_port": 443,
+                "to_port": 443,
+                "protocol": "tcp",
+                "cidr_blocks": ["0.0.0.0/0"]
+              }
+            ],
+            "tags": {
+              "Owner": "team@example.com",
+              "Environment": "production",
+              "Classification": "IL5",
+              "CostCenter": "CC-999",
+              "Compliance": "FedRAMP-High"
+            }
+          }
+        },
+        {
+          "address": "aws_db_instance.public_rds",
+          "mode": "managed",
+          "type": "aws_db_instance",
+          "name": "public_rds",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 2,
+          "values": {
+            "identifier": "insecure-db",
+            "publicly_accessible": true,
+            "storage_encrypted": false,
+            "tags": {
+              "Owner": "team@example.com",
+              "Environment": "production",
+              "Classification": "IL5",
+              "CostCenter": "CC-999",
+              "Compliance": "FedRAMP-High"
+            }
+          }
+        },
+        {
+          "address": "aws_eks_cluster.no_encryption",
+          "mode": "managed",
+          "type": "aws_eks_cluster",
+          "name": "no_encryption",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 1,
+          "values": {
+            "name": "insecure-cluster",
+            "enabled_cluster_log_types": [],
+            "vpc_config": [
+              {
+                "endpoint_private_access": false,
+                "endpoint_public_access": true
+              }
+            ],
+            "tags": {
+              "Owner": "team@example.com",
+              "Environment": "production",
+              "Classification": "IL5",
+              "CostCenter": "CC-999",
+              "Compliance": "FedRAMP-High"
+            }
+          }
+        },
+        {
+          "address": "aws_kms_key.no_rotation",
+          "mode": "managed",
+          "type": "aws_kms_key",
+          "name": "no_rotation",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "enable_key_rotation": false,
+            "tags": {
+              "Owner": "team@example.com",
+              "Environment": "production",
+              "Classification": "IL5",
+              "CostCenter": "CC-999",
+              "Compliance": "FedRAMP-High"
+            }
+          }
+        },
+        {
+          "address": "aws_cloudtrail.disabled",
+          "mode": "managed",
+          "type": "aws_cloudtrail",
+          "name": "disabled",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "name": "disabled-trail",
+            "enable_logging": false,
+            "tags": {
+              "Owner": "team@example.com",
+              "Environment": "production",
+              "Classification": "IL5",
+              "CostCenter": "CC-999",
+              "Compliance": "FedRAMP-High"
+            }
+          }
+        },
+        {
+          "address": "aws_cloudtrail.no_encryption",
+          "mode": "managed",
+          "type": "aws_cloudtrail",
+          "name": "no_encryption",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "name": "unencrypted-trail",
+            "enable_logging": true,
+            "tags": {
+              "Owner": "team@example.com",
+              "Environment": "production",
+              "Classification": "IL5",
+              "CostCenter": "CC-999",
+              "Compliance": "FedRAMP-High"
+            }
+          }
+        },
+        {
+          "address": "aws_guardduty_detector.disabled",
+          "mode": "managed",
+          "type": "aws_guardduty_detector",
+          "name": "disabled",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "enable": false,
+            "tags": {
+              "Owner": "team@example.com",
+              "Environment": "production",
+              "Classification": "IL5",
+              "CostCenter": "CC-999",
+              "Compliance": "FedRAMP-High"
+            }
+          }
+        },
+        {
+          "address": "aws_cloudwatch_log_group.short_retention",
+          "mode": "managed",
+          "type": "aws_cloudwatch_log_group",
+          "name": "short_retention",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "name": "/app/logs",
+            "retention_in_days": 30,
+            "tags": {
+              "Owner": "team@example.com",
+              "Environment": "production",
+              "Classification": "IL5",
+              "CostCenter": "CC-999",
+              "Compliance": "FedRAMP-High"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "resource_changes": [],
+  "configuration": {
+    "provider_config": {
+      "aws": {
+        "name": "aws",
+        "full_name": "registry.terraform.io/hashicorp/aws"
+      }
+    }
+  }
+}

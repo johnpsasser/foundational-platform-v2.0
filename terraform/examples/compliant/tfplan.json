@@ -1,0 +1,259 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.5.7",
+  "planned_values": {
+    "root_module": {
+      "child_modules": [
+        {
+          "address": "module.aws_environment",
+          "resources": [
+            {
+              "address": "module.aws_environment.aws_vpc.main",
+              "mode": "managed",
+              "type": "aws_vpc",
+              "name": "main",
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 1,
+              "values": {
+                "cidr_block": "10.0.0.0/16",
+                "enable_dns_hostnames": true,
+                "enable_dns_support": true,
+                "instance_tenancy": "dedicated",
+                "tags": {
+                  "Name": "prod-defense-vpc",
+                  "Owner": "platform-team@example.gov",
+                  "Environment": "production",
+                  "Classification": "IL5",
+                  "CostCenter": "CC-12345",
+                  "Compliance": "FedRAMP-High",
+                  "DataSensitivity": "restricted"
+                }
+              }
+            },
+            {
+              "address": "module.aws_environment.aws_s3_bucket.cloudtrail",
+              "mode": "managed",
+              "type": "aws_s3_bucket",
+              "name": "cloudtrail",
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "bucket": "prod-defense-cloudtrail-logs",
+                "tags": {
+                  "Name": "prod-defense-cloudtrail-logs",
+                  "Owner": "platform-team@example.gov",
+                  "Environment": "production",
+                  "Classification": "IL5",
+                  "CostCenter": "CC-12345",
+                  "Compliance": "FedRAMP-High"
+                }
+              }
+            },
+            {
+              "address": "module.aws_environment.aws_s3_bucket_server_side_encryption_configuration.cloudtrail",
+              "mode": "managed",
+              "type": "aws_s3_bucket_server_side_encryption_configuration",
+              "name": "cloudtrail",
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "rule": [
+                  {
+                    "apply_server_side_encryption_by_default": [
+                      {
+                        "sse_algorithm": "aws:kms",
+                        "kms_master_key_id": "arn:aws-us-gov:kms:us-gov-west-1:123456789012:key/mrk-1234"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "address": "module.aws_environment.aws_ebs_volume.example",
+              "mode": "managed",
+              "type": "aws_ebs_volume",
+              "name": "example",
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "encrypted": true,
+                "kms_key_id": "arn:aws-us-gov:kms:us-gov-west-1:123456789012:key/mrk-1234",
+                "tags": {
+                  "Name": "prod-defense-data",
+                  "Owner": "platform-team@example.gov",
+                  "Environment": "production",
+                  "Classification": "IL5",
+                  "CostCenter": "CC-12345",
+                  "Compliance": "FedRAMP-High"
+                }
+              }
+            },
+            {
+              "address": "module.aws_environment.aws_kms_key.main",
+              "mode": "managed",
+              "type": "aws_kms_key",
+              "name": "main",
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "enable_key_rotation": true,
+                "deletion_window_in_days": 30,
+                "tags": {
+                  "Name": "prod-defense-key",
+                  "Owner": "platform-team@example.gov",
+                  "Environment": "production",
+                  "Classification": "IL5",
+                  "CostCenter": "CC-12345",
+                  "Compliance": "FedRAMP-High"
+                }
+              }
+            },
+            {
+              "address": "module.aws_environment.aws_security_group.private",
+              "mode": "managed",
+              "type": "aws_security_group",
+              "name": "private",
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 1,
+              "values": {
+                "name": "prod-defense-private-sg",
+                "ingress": [
+                  {
+                    "from_port": 443,
+                    "to_port": 443,
+                    "protocol": "tcp",
+                    "cidr_blocks": ["10.0.0.0/16"]
+                  }
+                ],
+                "egress": [
+                  {
+                    "from_port": 0,
+                    "to_port": 0,
+                    "protocol": "-1",
+                    "cidr_blocks": ["10.0.0.0/16"]
+                  }
+                ],
+                "tags": {
+                  "Name": "prod-defense-private-sg",
+                  "Owner": "platform-team@example.gov",
+                  "Environment": "production",
+                  "Classification": "IL5",
+                  "CostCenter": "CC-12345",
+                  "Compliance": "FedRAMP-High"
+                }
+              }
+            },
+            {
+              "address": "module.aws_environment.aws_eks_cluster.main",
+              "mode": "managed",
+              "type": "aws_eks_cluster",
+              "name": "main",
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 1,
+              "values": {
+                "name": "prod-defense-eks",
+                "enabled_cluster_log_types": ["api", "audit", "authenticator", "controllerManager", "scheduler"],
+                "encryption_config": [
+                  {
+                    "provider": [
+                      {
+                        "key_arn": "arn:aws-us-gov:kms:us-gov-west-1:123456789012:key/mrk-1234"
+                      }
+                    ],
+                    "resources": ["secrets"]
+                  }
+                ],
+                "vpc_config": [
+                  {
+                    "endpoint_private_access": true,
+                    "endpoint_public_access": false
+                  }
+                ],
+                "tags": {
+                  "Name": "prod-defense-eks",
+                  "Owner": "platform-team@example.gov",
+                  "Environment": "production",
+                  "Classification": "IL5",
+                  "CostCenter": "CC-12345",
+                  "Compliance": "FedRAMP-High"
+                }
+              }
+            },
+            {
+              "address": "module.aws_environment.aws_cloudtrail.main",
+              "mode": "managed",
+              "type": "aws_cloudtrail",
+              "name": "main",
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "name": "prod-defense-trail",
+                "enable_logging": true,
+                "is_multi_region_trail": true,
+                "kms_key_id": "arn:aws-us-gov:kms:us-gov-west-1:123456789012:key/mrk-1234",
+                "tags": {
+                  "Name": "prod-defense-trail",
+                  "Owner": "platform-team@example.gov",
+                  "Environment": "production",
+                  "Classification": "IL5",
+                  "CostCenter": "CC-12345",
+                  "Compliance": "FedRAMP-High"
+                }
+              }
+            },
+            {
+              "address": "module.aws_environment.aws_guardduty_detector.main",
+              "mode": "managed",
+              "type": "aws_guardduty_detector",
+              "name": "main",
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "enable": true,
+                "tags": {
+                  "Name": "prod-defense-guardduty",
+                  "Owner": "platform-team@example.gov",
+                  "Environment": "production",
+                  "Classification": "IL5",
+                  "CostCenter": "CC-12345",
+                  "Compliance": "FedRAMP-High"
+                }
+              }
+            },
+            {
+              "address": "module.aws_environment.aws_cloudwatch_log_group.eks",
+              "mode": "managed",
+              "type": "aws_cloudwatch_log_group",
+              "name": "eks",
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "name": "/aws/eks/prod-defense/cluster",
+                "retention_in_days": 365,
+                "kms_key_id": "arn:aws-us-gov:kms:us-gov-west-1:123456789012:key/mrk-1234",
+                "tags": {
+                  "Name": "prod-defense-eks-logs",
+                  "Owner": "platform-team@example.gov",
+                  "Environment": "production",
+                  "Classification": "IL5",
+                  "CostCenter": "CC-12345",
+                  "Compliance": "FedRAMP-High"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "resource_changes": [],
+  "configuration": {
+    "provider_config": {
+      "aws": {
+        "name": "aws",
+        "full_name": "registry.terraform.io/hashicorp/aws"
+      }
+    }
+  }
+}
