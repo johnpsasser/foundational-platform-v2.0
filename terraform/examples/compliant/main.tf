@@ -24,7 +24,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-gov-west-1"
+  region = "us-east-1"  # Change to us-gov-west-1 for GovCloud
 
   default_tags {
     tags = {
@@ -51,7 +51,7 @@ module "aws_environment" {
   environment_name     = "prod-defense"
   environment_type     = "production"
   classification_level = "IL5"
-  region              = "gov-west-1"
+  region              = "us-east-1"  # Change to gov-west-1 for GovCloud
 
   # Required tags (IL5 compliant)
   required_tags = {
@@ -309,7 +309,7 @@ module "aws_environment" {
 
     cross_region_replication = {
       enabled           = true
-      destination_region = "gov-east-1"
+      destination_region = "us-west-2"  # Change to gov-east-1 for GovCloud
     }
 
     point_in_time_recovery = {

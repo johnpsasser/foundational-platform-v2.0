@@ -33,6 +33,8 @@ make test-noncompliant # Test non-compliant example (expect failures)
 
 ### Deploy a Compliant Environment
 
+> **Note:** The example is configured for `us-east-1` (commercial AWS) for local testing. For production GovCloud deployments, update the region to `us-gov-west-1` in `terraform/examples/compliant/main.tf`.
+
 ```bash
 # 1. Initialize and plan
 make init-aws

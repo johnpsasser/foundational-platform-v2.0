@@ -44,12 +44,12 @@ variable "classification_level" {
 }
 
 variable "region" {
-  description = "Cloud-agnostic region identifier (mapped to provider-specific region)"
+  description = "AWS region identifier"
   type        = string
 
   validation {
-    condition     = can(regex("^[a-z]+-[a-z]+-[0-9]+$", var.region))
-    error_message = "Region must follow format: provider-location-number (e.g., gov-west-1, gov-east-1)."
+    condition     = can(regex("^[a-z]{2}-[a-z]+-[0-9]+$", var.region))
+    error_message = "Region must follow AWS format (e.g., us-east-1, us-gov-west-1)."
   }
 }
 
