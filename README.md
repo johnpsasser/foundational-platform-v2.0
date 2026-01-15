@@ -74,6 +74,10 @@ foundational-platform-v2.0/
 └── README.md
 ```
 
+## Architecture
+
+![Architecture Diagram](docs/Architecture%20Diagram%20-%20Foundational%20Platform%20Service%20v2.0.png)
+
 ## Documentation
 
 | Document | Description |
