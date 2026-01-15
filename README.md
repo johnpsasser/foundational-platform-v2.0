@@ -72,7 +72,6 @@ foundational-platform-v2.0/
 │       ├── compliant/                 # Passing example
 │       └── non-compliant/             # Failing example (for testing)
 ├── Makefile                           # One-command operations
-├── DECISIONS.md                       # Architecture decision log
 └── README.md
 ```
 
@@ -88,7 +87,6 @@ foundational-platform-v2.0/
 | [System Design](docs/System%20Design%20-%20Foundational%20Platform%20Service%20v2.0.pdf) | Architecture with diagrams |
 | [Implementation Plan](docs/Implementation%20Plan%20-%20Foundational%20Platform%20Service%20v2.0.pdf) | Phased delivery and cost model |
 | [Architecture Decisions](docs/Architecture%20Decisions%20-%20Foundational%20Platform%20Service%20v2.0.pdf) | ADRs and tradeoffs |
-| [DECISIONS.md](DECISIONS.md) | Architecture decision log |
 
 ## Makefile Commands
 
